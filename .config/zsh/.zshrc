@@ -8,12 +8,9 @@ fi
 autoload -U colors && colors	# Load colors
 setopt autocd	
 
-setopt GLOB_DOTS
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# export HISTCONTROL=ignoreboth:erasedups
 # History in cache directory:
 HISTSIZE=10000
 SAVEHIST=10000
@@ -36,16 +33,16 @@ fi
 
 [[ -f ~/.config/zsh/.zshrc-personal ]] && source ~/.config/zsh/.zshrc-personal
 
-source "/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme"
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.config/zsh/p10k.zsh ]] || source ~/.config/zsh/p10k.zsh
-
 # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
+
+source "/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme"
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.config/zsh/p10k.zsh ]] && source ~/.config/zsh/p10k.zsh
 
 
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
